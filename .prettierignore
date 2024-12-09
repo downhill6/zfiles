@@ -1,0 +1,11 @@
+node_modules
+.vscode
+build
+dist
+out
+.gitignore
+.prettierrc
+package-lock.json
+package.json
+pnpm-lock.yaml
+README.md
