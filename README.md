@@ -1,50 +1,39 @@
-# React + TypeScript + Vite
+# P2P 文件传输
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+使用 React、WebRTC 和 PeerJS 构建的实时文件传输工具。创建或加入房间以立即与其他人分享你的文件。
 
-Currently, two official plugins are available:
+## 功能
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 创建和加入文件传输房间。
+- 实时共享文件。
+- 简单易用的界面。
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 安装
 
-- Configure the top-level `parserOptions` property like this:
+1. 克隆仓库：
 
-```js
-export default tseslint.config({
-    languageOptions: {
-        // other options...
-        parserOptions: {
-            project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-            tsconfigRootDir: import.meta.dirname
-        }
-    }
-});
+```bash
+git clone https://github.com/downhill6/zfiles.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. 安装依赖：
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
-
-export default tseslint.config({
-    // Set the react version
-    settings: { react: { version: "18.3" } },
-    plugins: {
-        // Add the react plugin
-        react
-    },
-    rules: {
-        // other rules...
-        // Enable its recommended rules
-        ...react.configs.recommended.rules,
-        ...react.configs["jsx-runtime"].rules
-    }
-});
+```bash
+cd zfiles
+npm install
 ```
+
+3. 启动开发服务器：
+
+```bash
+npm run dev
+```
+
+## 贡献
+
+欢迎贡献代码、报告问题或提出改进建议。请提交 Pull Request 或 Issue。
+
+## 许可证
+
+本项目采用 MIT 许可证。
