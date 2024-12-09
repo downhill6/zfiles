@@ -184,7 +184,7 @@ export function Room() {
         <div>
             <header className="flex items-center bg-background shadow-sm h-14 border-b-border">
                 <div className="container mx-auto flex justify-between px-2 items-center">
-                    <h1 className="text-2xl">logo</h1>
+                    <img className='w-7 h-7' src="/logo.webp" alt="logo" />
                     <div className="flex items-center justify-between">
                         <Button
                             size="sm"

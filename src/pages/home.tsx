@@ -26,7 +26,7 @@ export function Home() {
             <header className="flex items-center bg-background shadow-sm h-14 border-b-border">
                 <div className="container mx-auto flex justify-between px-2">
                     <div className="flex items-center justify-between">
-                        <h1 className="text-2xl">logo</h1>
+                        <img className='w-7 h-7' src="/logo.webp" alt="logo" />
                         <p className="text-xs pl-4 text-gray-600 dark:text-gray-300 font-medium">
                             创建或加入房间，即刻分享文件
                         </p>
