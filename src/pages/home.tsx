@@ -6,6 +6,7 @@ import { Button } from "#/ui/button";
 import { Plus, UserRoundPlus } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import logoUrl from '#/logo.webp'
 
 export function Home() {
     const [roomId, setRoomId] = useState("");
@@ -26,7 +27,7 @@ export function Home() {
             <header className="flex items-center bg-background shadow-sm h-14 border-b-border">
                 <div className="container mx-auto flex justify-between px-2">
                     <div className="flex items-center justify-between">
-                        <img className='w-7 h-7' src="/logo.webp" alt="logo" />
+                        <img className='w-7 h-7' src={logoUrl} alt="logo" />
                         <p className="text-xs pl-4 text-gray-600 dark:text-gray-300 font-medium">
                             创建或加入房间，即刻分享文件
                         </p>

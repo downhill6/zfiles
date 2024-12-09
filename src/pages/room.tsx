@@ -10,6 +10,7 @@ import { FileTransfer, type Data } from "#/src/api/file-transfer";
 import { byteToSize } from "#/lib/byte-to-size";
 import download from "js-file-download";
 import { useToast } from "#/src/hooks/use-toast";
+import logoUrl from '#/logo.webp'
 
 function RoomInfoCard({ roomId }: { roomId?: string }) {
     const link = location.host + "/room/" + roomId;
@@ -184,7 +185,7 @@ export function Room() {
         <div>
             <header className="flex items-center bg-background shadow-sm h-14 border-b-border">
                 <div className="container mx-auto flex justify-between px-2 items-center">
-                    <img className='w-7 h-7' src="/logo.webp" alt="logo" />
+                    <img className='w-7 h-7' src={logoUrl} alt="logo" />
                     <div className="flex items-center justify-between">
                         <Button
                             size="sm"
