@@ -18,7 +18,17 @@ type Subscriber =
     | {
           type: "connected";
           cb: () => void;
+      }
+    | {
+          type: "new_file";
+          cb: () => void;
+      }
+    | {
+          type: "new_file_end";
+          cb: () => void;
       };
+
+const FileReceiveKey = "new file will be send";
 
 export class FileTransfer {
     private peer: Peer;
@@ -54,7 +64,12 @@ export class FileTransfer {
     ) {
         this.connection = connection;
         this.connection.on("data", (data) => {
-            this.onData(data as Data);
+            if (data === FileReceiveKey) {
+                this.dispatch("new_file");
+            } else {
+                this.onData(data as Data);
+                this.dispatch("new_file_end");
+            }
         });
         this.connection.on("close", () => {
             this.onConnectionClose();
@@ -97,6 +112,7 @@ export class FileTransfer {
                 file: new Blob([file], { type: file.type })
             };
             if (this.connection) {
+                this.connection.send(FileReceiveKey);
                 this.connection.send(data);
             }
         }
@@ -111,7 +127,7 @@ export class FileTransfer {
         this.subscribers.push(option);
     }
 
-    dispatch(type: "data" | "close" | "connected") {
+    dispatch(type: Subscriber["type"]) {
         this.subscribers.forEach((sub) => {
             if (sub.type === type) {
                 sub.cb(this.dataList);

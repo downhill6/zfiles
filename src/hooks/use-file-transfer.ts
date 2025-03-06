@@ -4,7 +4,7 @@ import { useToast } from "#/src/hooks/use-toast";
 
 export function useFileTransfer(roomId?: string) {
     const [transferIns, setTransferIns] = useState<FileTransfer>();
-    const { toast } = useToast();
+    const { toast, dismiss } = useToast();
 
     useEffect(() => {
         const ins = new FileTransfer();
@@ -75,7 +75,22 @@ export function useFileTransfer(roomId?: string) {
                 });
             }
         });
-    }, [roomId, toast]);
+        ins.subscribe({
+            type: "new_file",
+            cb: () => {
+                toast({
+                    title: "正在接收新的文件...",
+                    variant: "default"
+                });
+            }
+        });
+        ins.subscribe({
+            type: "new_file_end",
+            cb: () => {
+                dismiss();
+            }
+        });
+    }, [roomId, toast, dismiss]);
 
     return {
         transferIns

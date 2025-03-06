@@ -11,45 +11,42 @@ import { byteToSize } from "#/lib/byte-to-size";
 import download from "js-file-download";
 import { useToast } from "#/src/hooks/use-toast";
 import logoUrl from '#/logo.webp'
+import QRcode from "qrcode";
 
 function RoomInfoCard({ roomId }: { roomId?: string }) {
     const link = location.host + "/room/" + roomId;
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    if (roomId) {
+        console.log(link);
+        QRcode.toCanvas(canvasRef.current, link, {
+            width: 200,
+            color: {
+                dark: "#000000",
+                light: "#ffffff"
+            },
+        });
+    }
 
     return (
         <Card className="pt-2 pb-4 sm:max-w-80 sm:ml-6 ">
             <CardTitle className="text-base flex p-6 py-2 justify-between items-center">
                 <div>当前房间</div>
-                {/* <div className="font-light text-sm flex items-center">
-          <Users size="14" className="mr-1" /> 123
-        </div> */}
             </CardTitle>
-            <CardContent className="flex flex-col py-0 pb-2 items-end">
-                <div className="flex w-full justify-between items-center ">
-                    <span className="text-gray-600">room id</span>
-                    <CopyButton
-                        value={roomId || ""}
-                        size="sm"
-                        className="mb-1  text-sm text-gray-600">
-                        Copy
-                    </CopyButton>
-                </div>
-                <div className="w-full rounded-md border px-2 py-2 font-mono text-xs truncate bg-primary-foreground ">
-                    {roomId ? roomId : ""}
-                </div>
+            <CardContent className="flex py-0 pb-2 justify-center">
+                <canvas className="flex " width={200} height={200} ref={canvasRef}></canvas>
             </CardContent>
             <CardContent className="flex flex-col py-0 pb-2 items-end">
-                <div className="flex w-full justify-between items-center">
-                    <span className="text-gray-600">room link</span>
+                <div className="w-full border font-mono text-xs truncate flex items-center">
                     <CopyButton
                         value={link}
                         size="sm"
-                        className="mb-1  text-sm text-gray-600"
+                        variant="default"
                         link>
                         Copy
                     </CopyButton>
-                </div>
-                <div className="w-full rounded-md border px-2 py-2 font-mono text-xs truncate bg-primary-foreground ">
-                    {roomId ? link : ""}
+                    <div>
+                        {roomId ? link : ""}
+                    </div>
                 </div>
             </CardContent>
         </Card>
